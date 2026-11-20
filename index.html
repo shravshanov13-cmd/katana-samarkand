@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=Marck+Script&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@700&text=%E4%BE%8D%E3%82%AB%E3%82%BF%E3%83%8A%E5%88%80%E5%AF%BF%E5%8F%B8%E6%A1%9C%E5%92%8C&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@700&text=侍カタナ刀寿司桜和花見いただきます握り軍艦焼魚道&display=swap">
   <link rel="preload" as="image" href="assets/img/hero-samurai.jpg">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -31,6 +31,7 @@
       </a>
 
       <nav class="nav" id="nav" aria-label="Main">
+        <a href="#sakura" data-i18n="nav.sakura">Сакура-зал</a>
         <a href="#about" data-i18n="nav.about">О кухне</a>
         <a href="#atmosphere" data-i18n="nav.atmosphere">Атмосфера</a>
         <a href="#contacts" data-i18n="nav.contacts">Контакты</a>
@@ -52,45 +53,58 @@
   <main id="top">
 
     <!-- ============ 1. HERO ============ -->
-    <section class="hero" id="hero">
+    <section class="hero is-playing" id="hero">
       <div class="hero__media" aria-hidden="true">
-        <img src="assets/img/hero-samurai.jpg" alt="" class="hero__img" id="heroImg" fetchpriority="high">
-        <div class="hero__smoke hero__smoke--1"></div>
-        <div class="hero__smoke hero__smoke--2"></div>
-        <div class="hero__shade"></div>
+        <div class="hero__glow"></div>
+        <img src="assets/img/hero-samurai.jpg" alt="" class="hero__img" id="heroImg" width="986" height="768" fetchpriority="high">
+        <div class="hero__smoke"></div>
       </div>
       <canvas class="petals" id="petals" aria-hidden="true"></canvas>
 
       <div class="hero__vertical jp" aria-hidden="true">侍 · カタナ</div>
 
-      <div class="container hero__content">
-        <p class="eyebrow reveal" data-i18n="hero.eyebrow">Суши-бар · Самарканд</p>
-        <h1 class="hero__title reveal">
-          <span class="script" data-i18n="hero.script">в духе самурая</span>
-          <span class="hero__big" data-i18n="hero.big">Суши</span>
-          <span class="hero__line" data-i18n="hero.line">с характером</span>
+      <div class="hero__content">
+        <p class="eyebrow hero__eyebrow" data-i18n="hero.eyebrow">Суши-бар · Самарканд</p>
+        <h1 class="hero__title">
+          <span class="script hero__script" data-i18n="hero.script">в духе самурая</span>
+          <span class="hero__big" data-i18n="hero.big" data-split>Суши</span>
+          <span class="hero__line" data-i18n="hero.line" data-split>с характером</span>
         </h1>
-        <p class="hero__text reveal" data-i18n="hero.text">Японская, паназиатская и европейская кухня там, где цветёт сакура и горят красные фонари. Уютные кабинки и караоке — для вечеров, которые хочется повторить.</p>
-        <div class="hero__actions reveal">
+        <p class="hero__text" data-i18n="hero.text">Японская, паназиатская и европейская кухня там, где цветёт сакура и горят красные фонари. Уютные кабинки и караоке — для вечеров, которые хочется повторить.</p>
+        <div class="hero__actions">
           <a href="tel:+998937223344" class="btn btn--red">
             <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
             <span data-i18n="cta.bookTable">Забронировать столик</span>
           </a>
-          <a href="#atmosphere" class="btn btn--ghost" data-i18n="cta.seeAtmosphere">Смотреть атмосферу</a>
+          <a href="#sakura" class="btn btn--ghost" data-i18n="cta.seeAtmosphere">Смотреть атмосферу</a>
         </div>
-      </div>
-
-      <div class="hero__bottom container">
         <ul class="hero__tags">
           <li data-i18n="tag.japan">Японская кухня</li>
           <li data-i18n="tag.asia">Паназиатская</li>
           <li data-i18n="tag.europe">Европейская</li>
         </ul>
-        <a href="#about" class="scroll-cue" aria-label="Scroll"><span></span></a>
       </div>
     </section>
 
-    <!-- ============ 2. ABOUT / CUISINE ============ -->
+    <!-- ============ 2. SAKURA HALL (50 / 50) ============ -->
+    <section class="sakura" id="sakura">
+      <figure class="sakura__media reveal">
+        <img src="assets/img/interior-sakura.jpg" alt="Сакура-зал ресторана Katana" loading="lazy" width="896" height="1200" data-i18n-alt="atmo.alt1">
+        <figcaption class="jp" aria-hidden="true">桜</figcaption>
+      </figure>
+      <div class="sakura__text">
+        <p class="eyebrow reveal" data-i18n="sakura.eyebrow">Ханами · 花見</p>
+        <h2 class="section-title reveal">
+          <span data-i18n="sakura.title">Сакура цветёт</span>
+          <span class="script" data-i18n="sakura.script">круглый год</span>
+        </h2>
+        <p class="lead reveal" data-i18n="sakura.text">В Японии сакура цветёт всего пару недель, и вся страна выходит любоваться ею. Этот обычай называют ханами. В Katana дерево цветёт каждый день: под его ветвями и сотней бумажных зонтиков проходят свидания, семейные ужины и долгие разговоры.</p>
+        <blockquote class="sakura__quote reveal" data-i18n="sakura.quote">Японцы видят в сакуре красоту мгновения: всё лучшее случается здесь и сейчас.</blockquote>
+        <a href="#atmosphere" class="btn btn--ghost reveal" data-i18n="sakura.cta">Смотреть все залы</a>
+      </div>
+    </section>
+
+    <!-- ============ 3. CUISINE ============ -->
     <section class="about" id="about">
       <div class="about__kanji jp" aria-hidden="true">寿司</div>
       <div class="container about__grid">
@@ -101,14 +115,10 @@
             <span class="about__big" data-i18n="about.big">Японии</span>
             <span class="script" data-i18n="about.script">в сердце Самарканда</span>
           </h2>
-          <p class="lead reveal" data-i18n="about.text">Свежий лосось, нежный угорь, авторские роллы и горячие блюда паназиатской и европейской кухни. Каждое блюдо мы готовим так, как самурай точит свой меч, — с вниманием к каждой детали.</p>
-          <div class="about__offer reveal">
-            <a href="tel:+998937223344" class="btn btn--gold" data-i18n="cta.order">Заказать</a>
-            <p class="about__price">
-              <span data-i18n="about.priceFrom">Нигири от</span>
-              <strong>25 000</strong>
-              <span data-i18n="cur">сум</span>
-            </p>
+          <p class="lead reveal" data-i18n="about.text">Сочный лосось, нежный угорь унаги, креветки эби и икра тобико — основа нашей кухни. Рядом с ними авторские роллы и горячие блюда паназиатской и европейской кухни. Каждое блюдо мы готовим так, как самурай точит свой меч: внимательно к каждой детали.</p>
+          <div class="about__word reveal">
+            <span class="jp about__word-jp">いただきます</span>
+            <p data-i18n="about.word">Итадакимас — так в Японии говорят перед едой. Дословно: «с благодарностью принимаю».</p>
           </div>
         </div>
 
@@ -120,7 +130,7 @@
             <circle cx="200" cy="200" r="178" fill="none" stroke="currentColor" stroke-width="30" stroke-linecap="round" stroke-dasharray="860 260" filter="url(#rough)"/>
             <circle cx="200" cy="200" r="150" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="4 14" opacity=".55"/>
           </svg>
-          <img src="assets/img/sushi-plate.jpg" alt="Сяке нигири и роллы с лососем" class="about__plate" loading="lazy" data-i18n-alt="about.plateAlt">
+          <img src="assets/img/sushi-plate.jpg" alt="Сяке нигири и роллы с лососем" class="about__plate" loading="lazy" width="1024" height="1024" data-i18n-alt="about.plateAlt">
           <div class="about__badge">
             <span class="jp">和</span>
             <small data-i18n="about.badge">Свежий лосось каждый день</small>
@@ -129,33 +139,44 @@
       </div>
 
       <div class="container">
-        <ul class="dishes" aria-label="Signature">
+        <ul class="dishes">
           <li class="dish reveal">
-            <h3>Achchiq losos</h3>
-            <p data-i18n="dish.1">Тобико, острый лосось, омлет, сливочный сыр</p>
-            <div class="dish__price"><span><b>4</b> <i data-i18n="pcs">шт</i> — 45 000</span><span><b>8</b> <i data-i18n="pcs">шт</i> — 85 000</span></div>
+            <span class="dish__jp jp" aria-hidden="true">握り</span>
+            <h3 data-i18n="dish.1t">Нигири</h3>
+            <p data-i18n="dish.1">Ломтик рыбы на рисе, слепленном вручную. Самая древняя и честная форма суши: в ней сразу видно качество рыбы.</p>
+            <p class="dish__list">Syake · Syake kogeta · Unagi · Ebi</p>
           </li>
           <li class="dish reveal">
-            <h3>Yaki ilon balig’i</h3>
-            <p data-i18n="dish.2">Тобико, угорь, сливочный сыр, огурец, соус унаги, кунжут</p>
-            <div class="dish__price"><span><b>4</b> <i data-i18n="pcs">шт</i> — 50 000</span><span><b>8</b> <i data-i18n="pcs">шт</i> — 95 000</span></div>
+            <span class="dish__jp jp" aria-hidden="true">軍艦</span>
+            <h3 data-i18n="dish.2t">Гунканы</h3>
+            <p data-i18n="dish.2">«Кораблик» по-японски: рис в ленте нори, а сверху икра тобико, водоросли чука или острая начинка.</p>
+            <p class="dish__list">Tobiko · Kaiso · Achchiq sushi</p>
           </li>
           <li class="dish reveal">
-            <h3>Kani chiz</h3>
-            <p data-i18n="dish.3">Тобико, краб, омлет, острый соус, сливочный сыр, соус унаги</p>
-            <div class="dish__price"><span><b>4</b> <i data-i18n="pcs">шт</i> — 45 000</span><span><b>8</b> <i data-i18n="pcs">шт</i> — 85 000</span></div>
+            <span class="dish__jp jp" aria-hidden="true">焼き</span>
+            <h3 data-i18n="dish.3t">Запечённые роллы</h3>
+            <p data-i18n="dish.3">Тёплые роллы под шапкой соуса: сливочный сыр, угорь, краб, креветка и кунжут.</p>
+            <p class="dish__list">Achchiq losos · Kani chiz · Yaki ilon balig’i · Ebi motto</p>
           </li>
           <li class="dish reveal">
-            <h3>Syake / Unagi</h3>
-            <p data-i18n="dish.4">Классические нигири с лососем или угрём</p>
-            <div class="dish__price"><span>Syake — 25 000</span><span>Unagi — 35 000</span></div>
+            <span class="dish__jp jp" aria-hidden="true">魚</span>
+            <h3 data-i18n="dish.4t">Наша рыба</h3>
+            <p data-i18n="dish.4">Нежный лосось, угорь унаги под сладким соусом, креветки эби, краб и икра тобико. В Японии говорят: хорошие суши начинаются с хорошей рыбы.</p>
+            <p class="dish__list" data-i18n="dish.4list">Лосось · Угорь · Креветка · Краб · Тобико</p>
           </li>
         </ul>
-        <p class="dishes__note" data-i18n="dish.note">Цены указаны в сумах. Полное меню — в ресторане.</p>
+
+        <div class="tip reveal">
+          <span class="tip__mark jp" aria-hidden="true">道</span>
+          <p>
+            <strong data-i18n="tip.title">Совет от шефа.</strong>
+            <span data-i18n="tip.text">Макайте суши в соус стороной с рыбой, а не рисом, и ешьте нигири за один укус. Имбирь освежает вкус между кусочками.</span>
+          </p>
+        </div>
       </div>
     </section>
 
-    <!-- ============ 3. ATMOSPHERE ============ -->
+    <!-- ============ 4. ATMOSPHERE ============ -->
     <section class="atmo" id="atmosphere">
       <div class="container">
         <div class="atmo__head">
@@ -166,14 +187,10 @@
               <span class="script" data-i18n="atmo.script">детали</span>
             </h2>
           </div>
-          <p class="lead reveal" data-i18n="atmo.text">Цветущая сакура посреди зала, сотни бумажных зонтиков и красных фонарей, чёрный камень и бархат. Здесь легко забыть, что вы в Самарканде.</p>
+          <p class="lead reveal" data-i18n="atmo.text">Сотни бумажных зонтиков и красных фонарей, чёрный камень и бархат. Здесь легко забыть, что вы в Самарканде.</p>
         </div>
 
         <div class="gallery">
-          <figure class="gallery__item gallery__item--tall reveal">
-            <img src="assets/img/interior-sakura.jpg" alt="Сакура-зал ресторана Katana" loading="lazy" data-i18n-alt="atmo.alt1">
-            <figcaption data-i18n="atmo.cap1">Сакура-зал</figcaption>
-          </figure>
           <figure class="gallery__item gallery__item--wide reveal">
             <img src="assets/img/interior-lanterns.jpg" alt="Зал с красными фонарями и бумажными зонтиками" loading="lazy" data-i18n-alt="atmo.alt2">
             <figcaption data-i18n="atmo.cap2">Зал красных фонарей</figcaption>
@@ -214,17 +231,16 @@
       </div>
     </section>
 
-    <!-- ============ 4. CONTACTS ============ -->
+    <!-- ============ 5. CONTACTS ============ -->
     <section class="contacts" id="contacts">
-      <div class="contacts__bg" aria-hidden="true"></div>
       <div class="container contacts__grid">
         <div class="contacts__info">
           <p class="eyebrow reveal" data-i18n="c.eyebrow">Ждём вас</p>
-          <h2 class="section-title reveal">
+          <h2 class="contacts__title reveal">
             <span data-i18n="c.title">Забронируйте</span>
             <span class="script" data-i18n="c.script">столик</span>
           </h2>
-          <p class="lead reveal" data-i18n="c.text">Позвоните нам — подберём столик в зале или кабинку для вашей компании.</p>
+          <p class="contacts__text reveal" data-i18n="c.text">Приходите на семейный ужин, свидание под сакурой или вечер караоке с друзьями. VIP-кабинки лучше бронировать заранее — позвоните, и мы подберём место для вашей компании.</p>
 
           <div class="phones reveal">
             <a href="tel:+998937223344" class="phone">
@@ -247,11 +263,16 @@
               <span data-i18n="c.map">Открыть на Яндекс Картах</span>
             </a>
           </div>
-          <p class="contacts__city" data-i18n="c.city">Самарканд, Узбекистан</p>
         </div>
 
-        <div class="map reveal">
-          <iframe title="Katana — Yandex Maps" src="https://yandex.uz/map-widget/v1/?ll=66.926950%2C39.674087&z=17&oid=23079337511&ol=biz" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="contacts__side reveal">
+          <div class="map">
+            <iframe title="Katana — Yandex Maps" src="https://yandex.uz/map-widget/v1/?ll=66.926950%2C39.674087&z=16&oid=23079337511&ol=biz" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <p class="contacts__find">
+            <span class="jp" aria-hidden="true">侍</span>
+            <span data-i18n="c.find">Самарканд. Ищите нас по самураю в красных доспехах у входа.</span>
+          </p>
         </div>
       </div>
 

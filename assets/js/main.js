@@ -23,6 +23,38 @@
     return "ru";
   }
 
+  /* Wrap every letter in a span (words stay unbreakable) for the hero intro */
+  function splitChars(el) {
+    var text = el.textContent;
+    el.setAttribute("aria-label", text);
+    el.textContent = "";
+    var i = 0;
+    text.split(/(\s+)/).forEach(function (part) {
+      if (!part) return;
+      if (/^\s+$/.test(part)) { el.appendChild(document.createTextNode(" ")); return; }
+      var word = document.createElement("span");
+      word.className = "word";
+      word.setAttribute("aria-hidden", "true");
+      Array.from(part).forEach(function (c) {
+        var s = document.createElement("span");
+        s.className = "ch";
+        s.style.setProperty("--i", i++);
+        s.textContent = c;
+        word.appendChild(s);
+      });
+      el.appendChild(word);
+    });
+  }
+
+  function playHero() {
+    var hero = document.getElementById("hero");
+    if (!hero) return;
+    hero.classList.remove("is-playing");
+    void hero.offsetWidth; // restart CSS animations
+    hero.classList.add("is-playing");
+  }
+
+  var currentLang = null;
   function applyLang(lang) {
     var t = dict[lang];
     if (!t) return;
@@ -31,6 +63,9 @@
       var key = el.getAttribute("data-i18n");
       if (t[key] != null) el.textContent = t[key];
     });
+    document.querySelectorAll("[data-split]").forEach(splitChars);
+    if (currentLang && currentLang !== lang && window.scrollY < window.innerHeight * 0.6) playHero();
+    currentLang = lang;
     document.querySelectorAll("[data-i18n-alt]").forEach(function (el) {
       var key = el.getAttribute("data-i18n-alt");
       if (t[key] != null) el.setAttribute("alt", t[key]);
