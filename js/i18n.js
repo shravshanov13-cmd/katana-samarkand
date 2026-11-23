@@ -19,6 +19,9 @@ window.KATANA_I18N = {
     "nav.3": "Кухня",
     "nav.4": "Путь",
     "nav.5": "Контакты",
+    "nav.prev": "Предыдущий экран",
+    "nav.next": "Следующий экран",
+    "nav.tip": "Листать",
     "cta.book": "Забронировать",
     "cta.table": "Забронировать столик",
 
@@ -78,6 +81,9 @@ window.KATANA_I18N = {
     "nav.3": "Cuisine",
     "nav.4": "The Way",
     "nav.5": "Contacts",
+    "nav.prev": "Previous screen",
+    "nav.next": "Next screen",
+    "nav.tip": "Next",
     "cta.book": "Book a table",
     "cta.table": "Book a table",
 

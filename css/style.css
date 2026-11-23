@@ -855,7 +855,7 @@ html[lang="en"] .h-big.h-sakura { font-size: min(7vh, 4.4vw); }
 }
 
 /* ===================== Mobile-only controls (hidden on desktop) ===================== */
-.burger, .mnav, .fab { display: none; }
+.burger, .mnav, .fab, .snav { display: none; }
 
 /* =========================================================
    PHONE / TABLET PORTRAIT: the same one-shot, re-composed
@@ -967,6 +967,84 @@ html[lang="en"] .h-big.h-sakura { font-size: min(7vh, 4.4vw); }
   }
   .fab svg { width: 28px; height: 28px; padding: 6px; border-radius: 50%; background: rgba(255, 255, 255, .18); fill: currentColor; animation: ring 4s ease-in-out infinite 1s; }
   .is-end .fab, .is-menu .fab { opacity: 0; translate: -50% 140%; pointer-events: none; }
+
+  /* step buttons: a slim pill on the right, above the call button.
+     On the contacts scene it moves up under the header, out of the way. */
+  .snav {
+    position: fixed;
+    right: 12px;
+    top: calc(100svh - 222px - env(safe-area-inset-bottom));
+    z-index: 40;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 5px;
+    border-radius: 999px;
+    background: rgba(16, 11, 13, .74);
+    border: 1px solid rgba(227, 177, 92, .38);
+    box-shadow: 0 12px 26px -10px rgba(0, 0, 0, .6);
+    transition: top .7s cubic-bezier(.2, .7, .2, 1), opacity .4s;
+  }
+  .is-end .snav { top: 78px; }
+  /* keep the scene texts clear of the pill */
+  body .s2-text .sub, body .s2-text .lead, body .s3-text .dishes, body .s4-text .lead, body .s4-text .proverb { max-width: calc(100% - 48px); }
+  .is-menu .snav { opacity: 0; pointer-events: none; }
+  .snav-btn {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--cream);
+    -webkit-tap-highlight-color: transparent;
+    transition: opacity .35s, scale .2s, background .35s, box-shadow .35s;
+  }
+  .snav-btn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .snav-btn:active { scale: .9; }
+  .snav-down { background: var(--red); color: #fff6f0; box-shadow: 0 8px 18px -8px rgba(200, 38, 46, .95); }
+  .snav-num { font-family: var(--f-jp); font-weight: 700; font-size: 15px; line-height: 1; color: var(--gold); padding: 3px 0; }
+  .is-start .snav-up, .is-end .snav-down { opacity: .25; pointer-events: none; }
+  .is-end .snav-down { background: transparent; box-shadow: none; }
+
+  /* until the first tap: the down arrow breathes and says what it does */
+  .snav-tip {
+    position: absolute;
+    right: calc(100% + 14px);
+    top: 50%;
+    translate: 0 -50%;
+    padding: 6px 11px;
+    border-radius: 999px;
+    background: rgba(16, 11, 13, .78);
+    border: 1px solid rgba(227, 177, 92, .38);
+    color: var(--cream);
+    font-family: var(--f-head);
+    font-size: 11px;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .5s;
+  }
+  .snav--hint .snav-tip { opacity: 1; animation: tipNudge 2.4s ease-in-out infinite; }
+  .snav--hint .snav-down::after {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    border: 2px solid rgba(232, 60, 60, .75);
+    animation: snavPing 2.4s ease-out infinite;
+  }
+  .snav--hint .snav-down svg { animation: snavNudge 2.4s ease-in-out infinite; }
+  .is-end .snav-tip, .is-end .snav-down::after { display: none; }
+  @keyframes snavPing { 0% { scale: 1; opacity: .9; } 70%, 100% { scale: 1.55; opacity: 0; } }
+  @keyframes snavNudge { 0%, 100% { translate: 0 0; } 40% { translate: 0 3px; } }
+  @keyframes tipNudge { 0%, 100% { translate: 0 -50%; } 40% { translate: -4px -50%; } }
 
   .corner { width: 34px; height: 34px; }
   .c-tl { left: 8px; top: 72px; }

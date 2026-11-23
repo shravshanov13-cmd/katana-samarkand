@@ -44,6 +44,10 @@
       const v = dict[el.dataset.i18nAlt];
       if (v != null) el.alt = v;
     });
+    $$("[data-i18n-aria]").forEach((el) => {
+      const v = dict[el.dataset.i18nAria];
+      if (v != null) el.setAttribute("aria-label", v);
+    });
     if (dict["meta.title"]) document.title = dict["meta.title"];
     root.lang = lang;
     $$(".lang button").forEach((b) => b.classList.toggle("is-on", b.dataset.lang === lang));
@@ -580,6 +584,8 @@
   const fill = $(".progress-fill");
   const num = $(".progress-num");
   let current = -1;
+  const snav = $(".snav"), snavNum = $(".snav-num");
+  document.body.classList.add("is-start");
   let prevTime = 0;
 
   function onProgress(self) {
@@ -593,6 +599,10 @@
       if (num) num.textContent = NUM[idx];
       // on the contacts scene the phones are on screen, so the floating call button steps aside
       document.body.classList.toggle("is-end", idx === 4);
+      document.body.classList.toggle("is-start", idx === 0);
+      if (snavNum) snavNum.textContent = NUM[idx];
+      // once the guest has moved on, the "next" hint has done its job
+      if (idx > 0 && snav) snav.classList.remove("snav--hint");
     }
     fx.night = gsap.utils.clamp(0, 1, p * 2 - 0.9);
     fx.wind = gsap.utils.clamp(-2, 2, fx.wind + self.getVelocity() / 6000);
@@ -626,21 +636,44 @@
   if (burger) burger.addEventListener("click", () => setMenu(!menuOpen));
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") setMenu(false); });
 
+  /* glide the shot to a scene (menu links and the phone step buttons) */
+  const LABELS = ["s1", "s2", "s3", "s4", "s5"];
+  let goIdx = 0;
+  function goTo(label) {
+    const st = tl.scrollTrigger;
+    navigating = true;
+    navTarget = tl.labels[label] / tl.duration();
+    restStop = navTarget;
+    goIdx = LABELS.indexOf(label);
+    let done = false;
+    const release = () => { if (!done) { done = true; setTimeout(() => { navigating = false; }, 700); } };
+    window.addEventListener("scrollend", release, { once: true });
+    setTimeout(release, 2600);
+    window.scrollTo({ top: Math.round(st.labelToScroll(label)), behavior: "smooth" });
+  }
   $$("[data-go]").forEach((a) => {
     a.addEventListener("click", (e) => {
       e.preventDefault();
       setMenu(false);
-      const st = tl.scrollTrigger;
-      navigating = true;
-      navTarget = tl.labels[a.dataset.go] / tl.duration();
-      restStop = navTarget;
-      let done = false;
-      const release = () => { if (!done) { done = true; setTimeout(() => { navigating = false; }, 700); } };
-      window.addEventListener("scrollend", release, { once: true });
-      setTimeout(release, 2600);
-      window.scrollTo({ top: Math.round(st.labelToScroll(a.dataset.go)), behavior: "smooth" });
+      goTo(a.dataset.go);
     });
   });
+
+  // phone: one tap = one scene; quick taps keep counting from where the shot is heading
+  if (snav) {
+    const step = (d) => {
+      // where the page really is (the animation may still be catching up)
+      const st = tl.scrollTrigger, y = st.scroll();
+      let near = 0;
+      LABELS.forEach((l, n) => { if (Math.abs(st.labelToScroll(l) - y) < Math.abs(st.labelToScroll(LABELS[near]) - y)) near = n; });
+      const base = navigating ? goIdx : near;
+      const n = gsap.utils.clamp(0, LABELS.length - 1, base + d);
+      snav.classList.remove("snav--hint");
+      if (n !== base) goTo(LABELS[n]);
+    };
+    $(".snav-up").addEventListener("click", () => step(-1));
+    $(".snav-down").addEventListener("click", () => step(1));
+  }
 
   /* ---------------- the logo: a hanko seal that stamps itself ---------------- */
   if (!reduceMotion) {

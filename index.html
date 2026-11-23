@@ -127,6 +127,18 @@
   <span data-i18n="cta.table">Забронировать столик</span>
 </a>
 
+<!-- phone only: step through the scenes with buttons instead of swiping -->
+<nav class="snav snav--hint" aria-label="Экраны">
+  <button class="snav-btn snav-up" type="button" aria-label="Предыдущий экран" data-i18n-aria="nav.prev">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 14.5l6-6 6 6"/></svg>
+  </button>
+  <span class="snav-num" aria-hidden="true">一</span>
+  <button class="snav-btn snav-down" type="button" aria-label="Следующий экран" data-i18n-aria="nav.next">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg>
+    <span class="snav-tip" data-i18n="nav.tip">Листать</span>
+  </button>
+</nav>
+
 <!-- ===== Stage: one continuous shot ===== -->
 <main class="stage" id="stage">
 
