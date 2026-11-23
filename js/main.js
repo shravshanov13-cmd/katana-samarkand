@@ -175,7 +175,7 @@
     const petals = [], flies = [];
 
     function resize() {
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      dpr = isMobile ? 1 : Math.min(window.devicePixelRatio || 1, 2);
       W = cvs.clientWidth; H = cvs.clientHeight;
       cvs.width = W * dpr; cvs.height = H * dpr;
     }
@@ -211,9 +211,27 @@
     for (let i = 0; i < (isMobile ? 22 : 38); i++) petals.push(spawnPetal({}, true));
     for (let i = 0; i < (isMobile ? 20 : 34); i++) flies.push(spawnFly({}));
 
-    let t = 0;
+    // one glowing dot, drawn once and stamped for every firefly
+    const SPR = 64, spr = document.createElement("canvas");
+    spr.width = spr.height = SPR;
+    (() => {
+      const c = spr.getContext("2d"), g = c.createRadialGradient(SPR / 2, SPR / 2, 0, SPR / 2, SPR / 2, SPR / 2);
+      g.addColorStop(0, "rgba(255, 244, 190, .95)");
+      g.addColorStop(0.18, "rgba(255, 214, 110, .5)");
+      g.addColorStop(1, "rgba(255, 180, 60, 0)");
+      c.fillStyle = g;
+      c.fillRect(0, 0, SPR, SPR);
+    })();
+
+    let t = 0, dirty = true;
     gsap.ticker.add(() => {
       t += 0.016;
+      // nothing to draw (the blade scene): leave the canvas alone
+      if (fx.petals <= 0.01 && fx.flies <= 0.01) {
+        if (dirty) { ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, cvs.width, cvs.height); dirty = false; }
+        return;
+      }
+      dirty = true;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.clearRect(0, 0, W, H);
 
@@ -256,16 +274,11 @@
           const a = glow * fx.flies;
           if (a < 0.02) continue;
           const R = f.r * 9;
-          const g = ctx.createRadialGradient(f.x, f.y, 0, f.x, f.y, R);
-          g.addColorStop(0, `rgba(255, 244, 190, ${0.95 * a})`);
-          g.addColorStop(0.18, `rgba(255, 214, 110, ${0.5 * a})`);
-          g.addColorStop(1, "rgba(255, 180, 60, 0)");
-          ctx.fillStyle = g;
-          ctx.beginPath();
-          ctx.arc(f.x, f.y, R, 0, Math.PI * 2);
-          ctx.fill();
+          ctx.globalAlpha = a;
+          ctx.drawImage(spr, f.x - R, f.y - R, R * 2, R * 2);
         }
         ctx.globalCompositeOperation = "source-over";
+        ctx.globalAlpha = 1;
       }
       fx.wind *= 0.95;
     });
@@ -317,7 +330,12 @@
       "--sun-a": "#ff7a3e", "--sun-b": "#d93a26", "--sun-c": "#9e1c1c",
     },
   ];
+  // the palette lives only on the elements that use it: tweening it on :root
+  // restyled the whole page on every frame of the scroll
+  // (the first palette is set once on :root as the resting default)
+  const PAL = [...$$(".hdr, .progress, .sky, .sun, .land, .mist, .frame")];
   gsap.set(root, LOOK[0]);
+  gsap.set(PAL, LOOK[0]);
 
   /* ---------- calm snapping ----------
      A small scroll returns to the same scene; the shot moves on only
@@ -365,6 +383,19 @@
 
   ["s1", "s2", "s3", "s4", "s5"].forEach((l, i) => tl.addLabel(l, i));
 
+  const scenes = [...$$(".scene")];
+  let liveKey = "";
+  function markLive() {
+    const t = tl.time();
+    const key = scenes.map((_, n) => (t > n - 0.62 && t < n + 0.52 ? 1 : 0)).join("");
+    if (key === liveKey) return;
+    liveKey = key;
+    scenes.forEach((s, n) => s.classList.toggle("is-live", key[n] === "1"));
+  }
+  root.classList.add("has-live");
+  tl.eventCallback("onUpdate", markLive);
+  markLive();
+
   const IR = { immediateRender: false };
 
   /* helpers */
@@ -378,7 +409,7 @@
     tl.fromTo(from, { autoAlpha: 1 }, { autoAlpha: 0, duration: 0.06, ...IR }, i + 0.47);
     tl.fromTo(to, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.06, ...IR }, i + 0.42);
   };
-  const look = (i) => tl.to(root, { ...LOOK[i + 1], duration: 1, ease: "sine.inOut" }, i);
+  const look = (i) => tl.to(PAL, { ...LOOK[i + 1], duration: 1, ease: "sine.inOut" }, i);
   const blade = (sel, i) =>
     tl.fromTo(sel, { scaleX: 0, autoAlpha: 1 }, { scaleX: 1, duration: 0.16, ease: "power2.out", ...IR }, i)
       .to(sel, { autoAlpha: 0, duration: 0.16 }, i + 0.18);
@@ -648,7 +679,8 @@
       [".plate-wrap", 22, 10], [".s3-text", 9, 4], [".s3-kanji", -14, 0],
       [".s4-text", 10, 0], [".sword-slide", 20, 0], [".saya-slide", 15, 0], [".s4-glyphs", -14, 0], [".moon-wrap", -10, 0], [".panel", 5, 2], [".far-lanterns", -12, 0], [".garland", 6, 0],
       [".range--far", 5, 0], [".range--mid", 12, 0], [".range--near", 22, 0],
-    ].map(([s, d, r]) => ({ el: $(s), d: isMobile ? d * 0.5 : d, r: isMobile ? r * 0.6 : r })).filter((l) => l.el);
+    ].map(([s, d, r]) => ({ el: $(s), d: isMobile ? d * 0.5 : d, r: isMobile ? r * 0.6 : r })).filter((l) => l.el)
+      .map((l) => ({ ...l, scene: l.el.closest(".scene") }));
     const target = { x: 0, y: 0 }, pos = { x: 0, y: 0 };
     if (!isTouch) {
       window.addEventListener("pointermove", (e) => {
@@ -670,6 +702,7 @@
       pos.y += (target.y - pos.y) * 0.06;
       const mag = Math.min(1, Math.hypot(pos.x, pos.y));
       for (const l of layers) {
+        if (l.scene && !l.scene.classList.contains("is-live")) continue;
         l.el.style.translate = `${(-pos.x * l.d).toFixed(2)}px ${(-pos.y * l.d * 0.6).toFixed(2)}px`;
         if (l.r) l.el.style.rotate = `${(-pos.y).toFixed(3)} ${pos.x.toFixed(3)} 0 ${(mag * l.r).toFixed(2)}deg`;
       }
