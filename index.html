@@ -4,296 +4,369 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Katana — суши-бар в Самарканде</title>
-  <meta name="description" content="Katana — японская, паназиатская и европейская кухня в Самарканде. Сакура-зал, VIP-кабинки и караоке. Бронирование: +998 93 722 33 44.">
-  <meta name="theme-color" content="#0a0909">
-  <meta property="og:title" content="Katana — суши-бар в Самарканде">
-  <meta property="og:description" content="Японская, паназиатская и европейская кухня. Сакура-зал, VIP-кабинки, караоке.">
-  <meta property="og:image" content="assets/img/hero-samurai.jpg">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23d7262e'/%3E%3Cpath d='M18 36h28a14 14 0 0 1-28 0z' fill='%23fff'/%3E%3Cpath d='M24 14l14 18M30 12l12 18' stroke='%23fff' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+  <meta name="description" content="Katana — японская, паназиатская и европейская кухня в Самарканде. Сакура-зал, караоке, бронь по телефону.">
+  <meta name="theme-color" content="#f7ecdf">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=Marck+Script&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@700&text=侍カタナ刀寿司桜和花見いただきます握り軍艦焼魚道&display=swap">
-  <link rel="preload" as="image" href="assets/img/hero-samurai.jpg">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&family=Manrope:wght@400;500;600;700&family=Marck+Script&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500;700;900&display=swap&text=%E6%96%AC%E5%88%80%E3%82%AB%E3%82%BF%E3%83%8A%E4%BE%8D%E6%A1%9C%E8%8A%B1%E8%A6%8B%E5%AF%BF%E5%8F%B8%E6%8F%A1%E3%82%8A%E8%BB%8D%E8%89%A6%E7%84%BC%E3%81%8D%E9%81%93%E3%81%AF%E6%AD%A6%E5%A3%AB%E3%81%AE%E9%AD%82%E4%B8%80%E4%BA%8C%E4%B8%89%E5%9B%9B%E4%BA%94%E3%81%8A%E5%BE%85%E3%81%A1%E3%81%97%E3%81%A6%E3%82%8A%E3%81%BE%E3%81%99%E9%AD%9A%E5%92%8C%E5%B9%B4%E4%B8%AD%E5%92%B2%E3%81%8F%E3%83%BB%E9%AE%AE" rel="stylesheet">
+
+  <link rel="preload" as="image" href="assets/img/samurai.webp">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <!-- ============ HEADER ============ -->
-  <header class="header" id="header">
-    <div class="header__inner">
-      <a href="#top" class="logo" aria-label="Katana">
-        <span class="logo__mark" aria-hidden="true">
-          <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="30"/><path class="logo__bowl" d="M17 34h30a15 15 0 0 1-30 0z"/><path class="logo__sticks" d="M25 12l12 19M31 10l11 19"/></svg>
-        </span>
-        <span class="logo__text">KATANA</span>
-      </a>
+<!-- ===== SVG sprite: lanterns, petals, clouds ===== -->
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="g-lantern" cx="42%" cy="40%" r="65%">
+      <stop offset="0" stop-color="#ff7a5c"/>
+      <stop offset=".45" stop-color="#e0302f"/>
+      <stop offset="1" stop-color="#7e1016"/>
+    </radialGradient>
+    <linearGradient id="g-tassel" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#f1c879"/>
+      <stop offset="1" stop-color="#b8873a"/>
+    </linearGradient>
+    <radialGradient id="g-petal" cx="50%" cy="78%" r="80%">
+      <stop offset="0" stop-color="#fff4f6"/>
+      <stop offset=".45" stop-color="#fbd0dc"/>
+      <stop offset="1" stop-color="#ee8fab"/>
+    </radialGradient>
+    <clipPath id="katomado" clipPathUnits="objectBoundingBox">
+      <path d="M0,1 L0,.36 C0,.29 .05,.265 .1,.245 C.16,.22 .2,.16 .245,.1 C.3,.03 .4,0 .5,0 C.6,0 .7,.03 .755,.1 C.8,.16 .84,.22 .9,.245 C.95,.265 1,.29 1,.36 L1,1 Z"/>
+    </clipPath>
 
-      <nav class="nav" id="nav" aria-label="Main">
-        <a href="#sakura" data-i18n="nav.sakura">Сакура-зал</a>
-        <a href="#about" data-i18n="nav.about">О кухне</a>
-        <a href="#atmosphere" data-i18n="nav.atmosphere">Атмосфера</a>
-        <a href="#contacts" data-i18n="nav.contacts">Контакты</a>
-        <a href="tel:+998937223344" class="nav__phone">+998 93 722 33 44</a>
-      </nav>
+    <symbol id="lantern" viewBox="0 0 100 160">
+      <line x1="50" y1="0" x2="50" y2="20" stroke="#2a1a1a" stroke-width="1.6"/>
+      <rect x="34" y="18" width="32" height="10" rx="2" fill="#1d1213"/>
+      <ellipse cx="50" cy="70" rx="45" ry="44" fill="url(#g-lantern)"/>
+      <g fill="none" stroke="#6d0d12" stroke-opacity=".38" stroke-width="1.4">
+        <ellipse cx="50" cy="70" rx="31" ry="44"/>
+        <ellipse cx="50" cy="70" rx="15" ry="44"/>
+        <line x1="50" y1="26" x2="50" y2="114"/>
+      </g>
+      <text x="50" y="82" text-anchor="middle" font-family="'Noto Serif JP', serif" font-weight="900" font-size="34" fill="#2a0a0c" fill-opacity=".78">刀</text>
+      <rect x="34" y="112" width="32" height="10" rx="2" fill="#1d1213"/>
+      <rect x="44" y="122" width="12" height="34" rx="2" fill="url(#g-tassel)"/>
+      <g stroke="#c9963f" stroke-width="1"><line x1="46" y1="124" x2="46" y2="156"/><line x1="50" y1="124" x2="50" y2="158"/><line x1="54" y1="124" x2="54" y2="156"/></g>
+    </symbol>
 
-      <div class="header__right">
-        <div class="lang" role="group" aria-label="Language">
-          <button type="button" data-lang="ru">RU</button>
-          <button type="button" data-lang="uz">UZ</button>
-          <button type="button" data-lang="en">EN</button>
-        </div>
-        <a href="tel:+998937223344" class="btn btn--sm btn--red header__book" data-i18n="cta.book">Забронировать</a>
-        <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav"><span></span><span></span></button>
+    <symbol id="petal" viewBox="0 0 100 120">
+      <path d="M50 118 C20 110 2 82 6 52 C9 27 26 9 42 4 L50 17 L58 4 C74 9 91 27 94 52 C98 82 80 110 50 118 Z" fill="url(#g-petal)"/>
+      <path d="M50 112 C49 88 48 62 50 24 M50 92 C40 74 34 56 32 40 M50 92 C60 74 66 56 68 40" fill="none" stroke="#e48aa4" stroke-opacity=".35" stroke-width="1.1"/>
+    </symbol>
+
+    <symbol id="kumo" viewBox="0 0 320 130">
+      <path d="M8 124 C-4 92 28 70 56 82 C60 46 104 34 126 62 C140 22 200 16 214 60 C236 36 284 48 278 88 C304 92 316 116 296 124 Z" fill="#26304f"/>
+      <g fill="none" stroke="#5a6b9a" stroke-width="3" stroke-linecap="round">
+        <path d="M150 74 a16 16 0 1 1 16 16 a8 8 0 1 1 -8 -8"/>
+        <path d="M70 100 a13 13 0 1 1 13 13 a6 6 0 1 1 -6 -6"/>
+        <path d="M232 92 a12 12 0 1 1 12 12 a6 6 0 1 1 -6 -6"/>
+      </g>
+      <path d="M8 124 L296 124" stroke="#e3b15c" stroke-width="2" stroke-opacity=".6"/>
+    </symbol>
+
+    <symbol id="corner" viewBox="0 0 120 120">
+      <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="square">
+        <path d="M6 114 V6 H114"/>
+        <path d="M22 70 V22 H70"/>
+        <path d="M22 46 H46 V22"/>
+        <path d="M34 34 h0"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ===== Header ===== -->
+<header class="hdr">
+  <a class="brand" href="#s1" data-go="s1" aria-label="Katana">
+    <span class="hanko"><span class="hanko-k">刀</span><span class="hanko-sheen"></span></span>
+    <span class="brand-word">KATANA</span>
+  </a>
+  <nav class="nav" aria-label="Разделы">
+    <a href="#s1" data-go="s1" class="is-active"><i>一</i><span data-i18n="nav.1">Самурай</span></a>
+    <a href="#s2" data-go="s2"><i>二</i><span data-i18n="nav.2">Сакура</span></a>
+    <a href="#s3" data-go="s3"><i>三</i><span data-i18n="nav.3">Кухня</span></a>
+    <a href="#s4" data-go="s4"><i>四</i><span data-i18n="nav.4">Путь</span></a>
+    <a href="#s5" data-go="s5"><i>五</i><span data-i18n="nav.5">Контакты</span></a>
+  </nav>
+  <div class="hdr-right">
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="ru" class="is-on">RU</button>
+      <span aria-hidden="true">/</span>
+      <button type="button" data-lang="en">EN</button>
+    </div>
+    <a class="btn btn--sm" href="tel:+998937223344" data-i18n="cta.book">Забронировать</a>
+    <button type="button" class="burger" aria-label="Меню" aria-expanded="false" aria-controls="mnav">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ===== Mobile menu ===== -->
+<div class="mnav" id="mnav" aria-hidden="true">
+  <div class="mnav-kanji" aria-hidden="true">刀</div>
+  <nav class="mnav-links" aria-label="Разделы">
+    <a href="#s1" data-go="s1"><i>一</i><span data-i18n="nav.1">Самурай</span></a>
+    <a href="#s2" data-go="s2"><i>二</i><span data-i18n="nav.2">Сакура</span></a>
+    <a href="#s3" data-go="s3"><i>三</i><span data-i18n="nav.3">Кухня</span></a>
+    <a href="#s4" data-go="s4"><i>四</i><span data-i18n="nav.4">Путь</span></a>
+    <a href="#s5" data-go="s5"><i>五</i><span data-i18n="nav.5">Контакты</span></a>
+  </nav>
+  <div class="mnav-foot">
+    <a class="phone" href="tel:+998937223344">+998 93 722 33 44</a>
+    <p><span data-i18n="s5.hours">Ежедневно</span> · 11:00 — 23:00</p>
+  </div>
+</div>
+
+<!-- ===== Mobile: call button, always at hand ===== -->
+<a class="fab" href="tel:+998937223344">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
+  <span data-i18n="cta.table">Забронировать столик</span>
+</a>
+
+<!-- ===== Stage: one continuous shot ===== -->
+<main class="stage" id="stage">
+
+  <!-- sky & light -->
+  <div class="sky"></div>
+  <div class="haze haze--1"></div>
+  <div class="haze haze--2"></div>
+  <div class="seigaiha"></div>
+
+  <div class="sun-wrap"><div class="sun"></div></div>
+  <div class="moon-wrap"><div class="moon"></div></div>
+  <div class="stars"></div>
+
+  <!-- landscape: the "camera" moves through it -->
+  <div class="land">
+    <svg class="range range--far" viewBox="0 0 1600 500" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <path class="m-far" d="M0 360 C80 330 140 300 210 318 C270 334 320 290 390 296 C440 300 470 270 520 262 L600 214 C625 196 640 176 652 160 C664 146 676 142 690 142 C704 142 716 146 728 160 C742 176 760 198 790 216 L900 270 C960 262 1010 296 1080 300 C1150 304 1200 270 1270 282 C1350 296 1400 322 1480 318 C1530 316 1570 330 1600 336 L1600 500 L0 500 Z"/>
+      <path class="m-snow" d="M600 214 C625 196 640 176 652 160 C664 146 676 142 690 142 C704 142 716 146 728 160 C742 176 760 198 790 216 L770 222 L752 210 L736 226 L716 206 L698 228 L680 208 L662 226 L646 210 L626 226 Z"/>
+    </svg>
+    <svg class="range range--mid" viewBox="0 0 1600 500" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <path class="m-mid" d="M0 400 C90 370 160 352 250 362 C330 372 380 340 460 344 C560 350 600 384 700 380 C800 376 860 344 960 350 C1060 356 1110 388 1210 380 C1300 372 1360 346 1450 352 C1520 356 1570 372 1600 378 L1600 500 L0 500 Z"/>
+      <g class="torii" transform="translate(300 300) scale(.9)">
+        <rect x="-62" y="0" width="124" height="9" rx="3"/>
+        <rect x="-52" y="16" width="104" height="6"/>
+        <rect x="-44" y="9" width="8" height="66"/>
+        <rect x="36" y="9" width="8" height="66"/>
+        <rect x="-4" y="9" width="8" height="10"/>
+      </g>
+    </svg>
+    <svg class="range range--near" viewBox="0 0 1600 500" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <path class="m-near" d="M0 450 C120 424 220 430 330 446 C420 458 500 440 600 436 C720 432 780 458 900 456 C1020 454 1100 432 1220 436 C1340 440 1420 462 1520 456 C1560 454 1585 450 1600 448 L1600 500 L0 500 Z"/>
+      <g class="pines">
+        <path d="M60 450 l14 -46 l14 46 z M84 452 l10 -32 l10 32 z M1440 456 l16 -54 l16 54 z M1470 458 l11 -36 l11 36 z M1500 456 l9 -28 l9 28 z"/>
+      </g>
+    </svg>
+    <div class="mist"></div>
+  </div>
+
+  <!-- ============ SCENE 1 · SAMURAI ============ -->
+  <section class="scene s1" id="s1" aria-labelledby="s1-title">
+    <div class="branch-wrap branch-wrap--s1"><svg class="branch" data-branch="a" viewBox="0 0 600 420" aria-hidden="true"></svg></div>
+
+    <div class="lantern-wrap l1"><svg class="lantern"><use href="#lantern"/></svg></div>
+    <div class="lantern-wrap l2"><svg class="lantern"><use href="#lantern"/></svg></div>
+
+    <div class="samurai-wrap">
+      <img class="samurai" src="assets/img/samurai.webp" alt="Самурай Katana в красных доспехах" data-i18n-alt="s1.alt" width="1572" height="1536">
+    </div>
+    <div class="kumo-wrap"><svg class="kumo"><use href="#kumo"/></svg></div>
+
+    <div class="v-banner">
+      <span class="v-kanji">刀</span>
+      <span class="v-kana">カタナ・侍</span>
+      <span class="v-line"></span>
+    </div>
+
+    <div class="s1-text">
+      <p class="eyebrow reveal" data-i18n="s1.eyebrow">Суши-бар · Самарканд</p>
+      <p class="script reveal" data-i18n="s1.script">вкус, отточенный клинком</p>
+      <h1 class="mega reveal" id="s1-title">KATANA</h1>
+      <p class="tagline reveal" data-i18n="s1.line">Суши по кодексу самурая</p>
+      <p class="lead reveal" data-i18n="s1.text">Японская, паназиатская и европейская кухня там, где цветёт сакура и горят красные фонари.</p>
+      <div class="reveal cta-row">
+        <span class="scroll-hint"><span class="scroll-hint__line"></span><span data-i18n="s1.scroll">Листайте</span></span>
       </div>
     </div>
-  </header>
+  </section>
 
-  <main id="top">
-
-    <!-- ============ 1. HERO ============ -->
-    <section class="hero is-playing" id="hero">
-      <div class="hero__media" aria-hidden="true">
-        <div class="hero__glow"></div>
-        <img src="assets/img/hero-samurai.jpg" alt="" class="hero__img" id="heroImg" width="986" height="768" fetchpriority="high">
-        <div class="hero__smoke"></div>
-      </div>
-      <canvas class="petals" id="petals" aria-hidden="true"></canvas>
-
-      <div class="hero__vertical jp" aria-hidden="true">侍 · カタナ</div>
-
-      <div class="hero__content">
-        <p class="eyebrow hero__eyebrow" data-i18n="hero.eyebrow">Суши-бар · Самарканд</p>
-        <h1 class="hero__title">
-          <span class="script hero__script" data-i18n="hero.script">вкус, отточенный клинком</span>
-          <span class="hero__big" data-i18n="hero.big" data-split>Суши</span>
-          <span class="hero__line" data-i18n="hero.line" data-split>по кодексу самурая</span>
-        </h1>
-        <p class="hero__text" data-i18n="hero.text">Японская, паназиатская и европейская кухня там, где цветёт сакура и горят красные фонари. Уютные кабинки и караоке — для вечеров, которые хочется повторить.</p>
-        <div class="hero__actions">
-          <a href="tel:+998937223344" class="btn btn--red">
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
-            <span data-i18n="cta.bookTable">Забронировать столик</span>
-          </a>
-          <a href="#sakura" class="btn btn--ghost" data-i18n="cta.seeAtmosphere">Смотреть атмосферу</a>
-        </div>
-        <ul class="hero__tags">
-          <li data-i18n="tag.japan">Японская кухня</li>
-          <li data-i18n="tag.asia">Паназиатская</li>
-          <li data-i18n="tag.europe">Европейская</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- ============ 2. SAKURA HALL (50 / 50) ============ -->
-    <section class="sakura" id="sakura">
-      <figure class="sakura__media reveal">
-        <img src="assets/img/interior-sakura.jpg" alt="Сакура-зал ресторана Katana" loading="lazy" width="896" height="1200" data-i18n-alt="atmo.alt1">
-        <figcaption class="jp" aria-hidden="true">桜</figcaption>
-      </figure>
-      <div class="sakura__text">
-        <p class="eyebrow reveal" data-i18n="sakura.eyebrow">Ханами · 花見</p>
-        <h2 class="section-title reveal">
-          <span data-i18n="sakura.title">Сакура цветёт</span>
-          <span class="script" data-i18n="sakura.script">круглый год</span>
-        </h2>
-        <p class="lead reveal" data-i18n="sakura.text">В Японии сакура цветёт всего пару недель, и вся страна выходит любоваться ею. Этот обычай называют ханами. В Katana дерево цветёт каждый день: под его ветвями и сотней бумажных зонтиков проходят свидания, семейные ужины и долгие разговоры.</p>
-        <blockquote class="sakura__quote reveal" data-i18n="sakura.quote">Японцы видят в сакуре красоту мгновения: всё лучшее случается здесь и сейчас.</blockquote>
-        <a href="#atmosphere" class="btn btn--ghost reveal" data-i18n="sakura.cta">Смотреть все залы</a>
-      </div>
-    </section>
-
-    <!-- ============ 3. CUISINE ============ -->
-    <section class="about" id="about">
-      <div class="about__kanji jp" aria-hidden="true">寿司</div>
-      <div class="container about__grid">
-        <div class="about__text">
-          <p class="eyebrow reveal" data-i18n="about.eyebrow">Наша кухня</p>
-          <h2 class="about__title reveal">
-            <span class="about__small" data-i18n="about.small">Попробуйте гордость</span>
-            <span class="about__big" data-i18n="about.big">Японии</span>
-            <span class="script" data-i18n="about.script">в сердце Самарканда</span>
-          </h2>
-          <p class="lead reveal" data-i18n="about.text">Сочный лосось, нежный угорь унаги, креветки эби и икра тобико — основа нашей кухни. Рядом с ними авторские роллы и горячие блюда паназиатской и европейской кухни. Каждое блюдо мы готовим так, как самурай точит свой меч: внимательно к каждой детали.</p>
-          <div class="about__word reveal">
-            <span class="jp about__word-jp">いただきます</span>
-            <p data-i18n="about.word">Итадакимас — так в Японии говорят перед едой. Дословно: «с благодарностью принимаю».</p>
-          </div>
-        </div>
-
-        <div class="about__visual reveal">
-          <svg class="about__ring" viewBox="0 0 400 400" aria-hidden="true">
-            <defs>
-              <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="3" seed="7"/><feDisplacementMap in="SourceGraphic" scale="14"/></filter>
-            </defs>
-            <circle cx="200" cy="200" r="178" fill="none" stroke="currentColor" stroke-width="30" stroke-linecap="round" stroke-dasharray="860 260" filter="url(#rough)"/>
-            <circle cx="200" cy="200" r="150" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="4 14" opacity=".55"/>
-          </svg>
-          <img src="assets/img/sushi-plate.jpg" alt="Сяке нигири и роллы с лососем" class="about__plate" loading="lazy" width="1024" height="1024" data-i18n-alt="about.plateAlt">
-          <div class="about__badge">
-            <span class="jp">和</span>
-            <small data-i18n="about.badge">Свежий лосось каждый день</small>
-          </div>
-        </div>
-      </div>
-
-      <div class="container">
-        <ul class="dishes">
-          <li class="dish reveal">
-            <span class="dish__jp jp" aria-hidden="true">握り</span>
-            <h3 data-i18n="dish.1t">Нигири</h3>
-            <p data-i18n="dish.1">Ломтик рыбы на рисе, слепленном вручную. Самая древняя и честная форма суши: в ней сразу видно качество рыбы.</p>
-            <p class="dish__list">Syake · Syake kogeta · Unagi · Ebi</p>
-          </li>
-          <li class="dish reveal">
-            <span class="dish__jp jp" aria-hidden="true">軍艦</span>
-            <h3 data-i18n="dish.2t">Гунканы</h3>
-            <p data-i18n="dish.2">«Кораблик» по-японски: рис в ленте нори, а сверху икра тобико, водоросли чука или острая начинка.</p>
-            <p class="dish__list">Tobiko · Kaiso · Achchiq sushi</p>
-          </li>
-          <li class="dish reveal">
-            <span class="dish__jp jp" aria-hidden="true">焼き</span>
-            <h3 data-i18n="dish.3t">Запечённые роллы</h3>
-            <p data-i18n="dish.3">Тёплые роллы под шапкой соуса: сливочный сыр, угорь, краб, креветка и кунжут.</p>
-            <p class="dish__list">Achchiq losos · Kani chiz · Yaki ilon balig’i · Ebi motto</p>
-          </li>
-          <li class="dish reveal">
-            <span class="dish__jp jp" aria-hidden="true">魚</span>
-            <h3 data-i18n="dish.4t">Наша рыба</h3>
-            <p data-i18n="dish.4">Нежный лосось, угорь унаги под сладким соусом, креветки эби, краб и икра тобико. В Японии говорят: хорошие суши начинаются с хорошей рыбы.</p>
-            <p class="dish__list" data-i18n="dish.4list">Лосось · Угорь · Креветка · Краб · Тобико</p>
-          </li>
-        </ul>
-
-        <div class="tip reveal">
-          <span class="tip__mark jp" aria-hidden="true">道</span>
-          <p>
-            <strong data-i18n="tip.title">Совет от шефа.</strong>
-            <span data-i18n="tip.text">Макайте суши в соус стороной с рыбой, а не рисом, и ешьте нигири за один укус. Имбирь освежает вкус между кусочками.</span>
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ 4. ATMOSPHERE ============ -->
-    <section class="atmo" id="atmosphere">
-      <div class="container">
-        <div class="atmo__head">
-          <div>
-            <p class="eyebrow reveal" data-i18n="atmo.eyebrow">Атмосфера</p>
-            <h2 class="section-title reveal">
-              <span data-i18n="atmo.title">Япония в каждой</span>
-              <span class="script" data-i18n="atmo.script">детали</span>
-            </h2>
-          </div>
-          <p class="lead reveal" data-i18n="atmo.text">Сотни бумажных зонтиков и красных фонарей, чёрный камень и бархат. Здесь легко забыть, что вы в Самарканде.</p>
-        </div>
-
-        <div class="gallery">
-          <figure class="gallery__item gallery__item--wide reveal">
-            <img src="assets/img/interior-lanterns.jpg" alt="Зал с красными фонарями и бумажными зонтиками" loading="lazy" data-i18n-alt="atmo.alt2">
-            <figcaption data-i18n="atmo.cap2">Зал красных фонарей</figcaption>
-          </figure>
-          <figure class="gallery__item reveal">
-            <img src="assets/img/lanterns-ceiling.webp" alt="Фонари и японские зонтики под потолком" loading="lazy" data-i18n-alt="atmo.alt3">
-            <figcaption data-i18n="atmo.cap3">Небо из зонтиков</figcaption>
-          </figure>
-          <figure class="gallery__item reveal">
-            <img src="assets/img/facade.webp" alt="Фасад ресторана Katana с самураем у входа" loading="lazy" data-i18n-alt="atmo.alt4">
-            <figcaption data-i18n="atmo.cap4">Самурай встречает у входа</figcaption>
-          </figure>
-        </div>
-
-        <ul class="features">
-          <li class="feature reveal">
-            <span class="feature__ico" aria-hidden="true">
-              <svg viewBox="0 0 48 48"><path d="M24 6c3 5 3 9 0 13-3-4-3-8 0-13zM24 19c5-2 9-1 13 2-4 3-9 3-13-2zM24 19c-5-2-9-1-13 2 4 3 9 3 13-2zM24 19v23M18 42h12"/></svg>
-            </span>
-            <h3 data-i18n="f1.t">Сакура-зал</h3>
-            <p data-i18n="f1.d">Главный зал под цветущим деревом и сотней японских зонтиков</p>
-          </li>
-          <li class="feature reveal">
-            <span class="feature__ico" aria-hidden="true">
-              <svg viewBox="0 0 48 48"><rect x="7" y="9" width="34" height="30" rx="2"/><path d="M24 9v30M7 24h34M15 39v3M33 39v3"/></svg>
-            </span>
-            <h3 data-i18n="f2.t">VIP-кабинки</h3>
-            <p data-i18n="f2.d">Уединённые кабинки для семьи, друзей и деловых встреч</p>
-          </li>
-          <li class="feature reveal">
-            <span class="feature__ico" aria-hidden="true">
-              <svg viewBox="0 0 48 48"><rect x="18" y="5" width="12" height="22" rx="6"/><path d="M12 22a12 12 0 0 0 24 0M24 34v8M17 42h14"/></svg>
-            </span>
-            <h3 data-i18n="f3.t">Караоке</h3>
-            <p data-i18n="f3.d">Любимые песни до поздней ночи — в зале или в своей кабинке</p>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- ============ 5. CONTACTS ============ -->
-    <section class="contacts" id="contacts">
-      <div class="container contacts__grid">
-        <div class="contacts__info">
-          <p class="eyebrow reveal" data-i18n="c.eyebrow">Ждём вас</p>
-          <h2 class="contacts__title reveal">
-            <span data-i18n="c.title">Забронируйте</span>
-            <span class="script" data-i18n="c.script">столик</span>
-          </h2>
-          <p class="contacts__text reveal" data-i18n="c.text">Приходите на семейный ужин, свидание под сакурой или вечер караоке с друзьями. VIP-кабинки лучше бронировать заранее — позвоните, и мы подберём место для вашей компании.</p>
-
-          <div class="phones reveal">
-            <a href="tel:+998937223344" class="phone">
-              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
-              +998 93 722 33 44
-            </a>
-            <a href="tel:+998906033344" class="phone">
-              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
-              +998 90 603 33 44
-            </a>
-          </div>
-
-          <div class="links reveal">
-            <a href="https://www.instagram.com/katana_samarkand/" target="_blank" rel="noopener" class="link-pill">
-              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7.2A4.8 4.8 0 1 0 16.8 12 4.8 4.8 0 0 0 12 7.2zm0 7.9A3.1 3.1 0 1 1 15.1 12 3.1 3.1 0 0 1 12 15.1zM17 5.9a1.1 1.1 0 1 0 1.1 1.1A1.1 1.1 0 0 0 17 5.9zM21.9 7.1a5.6 5.6 0 0 0-1.5-4 5.6 5.6 0 0 0-4-1.5C14.9 1.5 9.1 1.5 7.6 1.6a5.6 5.6 0 0 0-4 1.5 5.6 5.6 0 0 0-1.5 4c-.1 1.5-.1 7.3 0 8.8a5.6 5.6 0 0 0 1.5 4 5.6 5.6 0 0 0 4 1.5c1.5.1 7.3.1 8.8 0a5.6 5.6 0 0 0 4-1.5 5.6 5.6 0 0 0 1.5-4c.1-1.5.1-7.3 0-8.8zm-2.1 10.4a3.2 3.2 0 0 1-1.8 1.8c-1.3.5-4.3.4-5.7.4s-4.4.1-5.7-.4a3.2 3.2 0 0 1-1.8-1.8c-.5-1.3-.4-4.3-.4-5.7s-.1-4.4.4-5.7A3.2 3.2 0 0 1 6.3 4.3c1.3-.5 4.3-.4 5.7-.4s4.4-.1 5.7.4a3.2 3.2 0 0 1 1.8 1.8c.5 1.3.4 4.3.4 5.7s.1 4.4-.4 5.7z"/></svg>
-              @katana_samarkand
-            </a>
-            <a href="https://yandex.uz/maps/org/katana/23079337511/?ll=66.926950%2C39.674087&z=17" target="_blank" rel="noopener" class="link-pill">
-              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 14.5 9 2.5 2.5 0 0 1 12 11.5z"/></svg>
-              <span data-i18n="c.map">Открыть на Яндекс Картах</span>
-            </a>
-          </div>
-        </div>
-
-        <div class="contacts__side reveal">
-          <div class="map">
-            <iframe title="Katana — Yandex Maps" src="https://yandex.uz/map-widget/v1/?ll=66.926950%2C39.674087&z=16&oid=23079337511&ol=biz" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
-          </div>
-          <p class="contacts__find">
-            <span class="jp" aria-hidden="true">侍</span>
-            <span data-i18n="c.find">Самарканд. Ищите нас по самураю в красных доспехах у входа.</span>
-          </p>
-        </div>
-      </div>
-
-      <footer class="footer container">
-        <a href="#top" class="logo logo--footer" aria-label="Katana">
-          <span class="logo__mark" aria-hidden="true">
-            <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="30"/><path class="logo__bowl" d="M17 34h30a15 15 0 0 1-30 0z"/><path class="logo__sticks" d="M25 12l12 19M31 10l11 19"/></svg>
-          </span>
-          <span class="logo__text">KATANA</span>
+  <!-- ============ SCENE 2 · SAKURA ============ -->
+  <section class="scene s2" id="s2" aria-labelledby="s2-title">
+    <div class="s2-kanji" aria-hidden="true">桜</div>
+    <div class="branch-wrap branch-wrap--s2a"><svg class="branch" data-branch="b" viewBox="0 0 600 420" aria-hidden="true"></svg></div>
+    <div class="s2-text">
+      <p class="eyebrow reveal" data-i18n="s2.eyebrow">Ханами · 花見</p>
+      <h2 class="h-big h-sakura" id="s2-title">
+        <span class="reveal" data-i18n="s2.t1">Сакура</span>
+        <span class="reveal" data-i18n="s2.t2">цветёт</span>
+        <span class="reveal h-accent" data-i18n="s2.t3">круглый год</span>
+      </h2>
+      <p class="sub reveal" data-i18n="s2.sub">Мы всегда рады видеть наших гостей</p>
+      <p class="lead reveal" data-i18n="s2.text">В Японии сакура цветёт всего пару недель. В Katana — каждый день, под сотней бумажных зонтиков.</p>
+      <div class="reveal">
+        <a class="btn btn--icon" href="tel:+998937223344">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
+          <span data-i18n="cta.table">Забронировать столик</span>
         </a>
-        <p>© <span id="year">2026</span> Katana · <span data-i18n="footer">Суши-бар в Самарканде</span></p>
-      </footer>
-    </section>
-  </main>
+      </div>
+    </div>
+    <div class="window-wrap">
+      <div class="window">
+        <img src="assets/img/sakura-hall.webp" alt="Сакура-зал ресторана Katana" data-i18n-alt="s2.alt" width="896" height="1200">
+      </div>
+      <svg class="window-frame" viewBox="0 0 1 1" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,1 L0,.36 C0,.29 .05,.265 .1,.245 C.16,.22 .2,.16 .245,.1 C.3,.03 .4,0 .5,0 C.6,0 .7,.03 .755,.1 C.8,.16 .84,.22 .9,.245 C.95,.265 1,.29 1,.36 L1,1 Z"/>
+      </svg>
+      <span class="window-cap" lang="ja">桜は一年中咲く</span>
+      <div class="branch-wrap branch-wrap--s2b"><svg class="branch" data-branch="c" viewBox="0 0 600 420" aria-hidden="true"></svg></div>
+    </div>
+  </section>
 
-  <!-- Floating call button (mobile) -->
-  <a href="tel:+998937223344" class="fab" aria-label="Call">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
-  </a>
+  <!-- ============ SCENE 3 · SUSHI ============ -->
+  <section class="scene s3" id="s3" aria-labelledby="s3-title">
+    <div class="s3-kanji" aria-hidden="true">寿司</div>
+    <div class="plate-wrap">
+      <div class="plate-glow"></div>
+      <img class="plate" src="assets/img/sushi-plate.webp" alt="Нигири и роллы с лососем" data-i18n-alt="s3.alt" width="1024" height="1024">
+    </div>
+    <div class="s3-text">
+      <p class="eyebrow reveal" data-i18n="s3.eyebrow">Наша кухня · 寿司</p>
+      <p class="h-small reveal" data-i18n="s3.small">Попробуйте гордость</p>
+      <h2 class="h-huge reveal" id="s3-title" data-i18n="s3.big">Японии</h2>
+      <p class="script script--gold reveal" data-i18n="s3.script">в сердце Самарканда</p>
+      <ul class="dishes">
+        <li class="dish reveal"><span class="dish-k">握り</span><div><b data-i18n="s3.d1t">Нигири</b><p data-i18n="s3.d1">Ломтик рыбы на рисе, слепленном вручную.</p></div></li>
+        <li class="dish reveal"><span class="dish-k">軍艦</span><div><b data-i18n="s3.d2t">Гунканы</b><p data-i18n="s3.d2">Рис в ленте нори с икрой тобико или острой начинкой.</p></div></li>
+        <li class="dish reveal"><span class="dish-k">焼き</span><div><b data-i18n="s3.d3t">Запечённые роллы</b><p data-i18n="s3.d3">Тёплые роллы под шапкой соуса: сыр, угорь, краб.</p></div></li>
+      </ul>
+      <p class="tags reveal" data-i18n="s3.tags">Японская · Паназиатская · Европейская</p>
+    </div>
+  </section>
 
-  <script src="assets/js/i18n.js"></script>
-  <script src="assets/js/main.js"></script>
+  <!-- ============ SCENE 4 · THE BLADE ============ -->
+  <section class="scene s4" id="s4" aria-labelledby="s4-title">
+    <!-- the blade alone in the dark night, with brush glyphs drifting around it -->
+    <div class="s4-night" aria-hidden="true"></div>
+    <div class="s4-glyphs" aria-hidden="true">
+      <span class="gl gl1">刀</span><span class="gl gl2">侍</span><span class="gl gl3">魂</span><span class="gl gl4">斬</span>
+      <span class="gl gl5">武士道</span>
+    </div>
+    <!-- the sheath lies under the blade, tipped a little lower to the right -->
+    <div class="saya-wrap">
+      <div class="saya-slide"><img class="saya" src="assets/img/saya.webp" alt="" width="167" height="1767"></div>
+    </div>
+    <div class="sword-wrap">
+      <div class="sword-slide">
+        <img class="sword" src="assets/img/katana.webp" alt="Катана" data-i18n-alt="s4.alt" width="184" height="2332">
+        <span class="sword-glint"></span>
+      </div>
+    </div>
+    <div class="s4-text">
+      <div class="s4-head">
+        <span class="s4-kanji reveal" aria-hidden="true">道</span>
+        <div>
+          <p class="eyebrow reveal" data-i18n="s4.eyebrow">Путь · 道</p>
+          <h2 class="h-big reveal" id="s4-title" data-i18n="s4.title">Путь клинка</h2>
+        </div>
+      </div>
+      <p class="lead lead--lg reveal" data-i18n="s4.text">Каждое блюдо мы готовим так, как самурай точит свой меч: внимательно к каждой детали.</p>
+      <div class="proverb reveal">
+        <span class="proverb-jp" lang="ja">刀は武士の魂</span>
+        <span class="proverb-tr" data-i18n="s4.proverb">«Меч — душа самурая»</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCENE 5 · CONTACTS ============ -->
+  <section class="scene s5" id="s5" aria-labelledby="s5-title">
+    <div class="garland">
+      <svg class="garland-rope" viewBox="0 0 1600 140" preserveAspectRatio="none" aria-hidden="true"><path d="M-20 10 Q800 150 1620 10"/></svg>
+      <div class="lantern-wrap g g1"><svg class="lantern"><use href="#lantern"/></svg></div>
+      <div class="lantern-wrap g g2"><svg class="lantern"><use href="#lantern"/></svg></div>
+      <div class="lantern-wrap g g3"><svg class="lantern"><use href="#lantern"/></svg></div>
+      <div class="lantern-wrap g g4"><svg class="lantern"><use href="#lantern"/></svg></div>
+      <div class="lantern-wrap g g5"><svg class="lantern"><use href="#lantern"/></svg></div>
+      <div class="lantern-wrap g g6"><svg class="lantern"><use href="#lantern"/></svg></div>
+      <div class="lantern-wrap g g7"><svg class="lantern"><use href="#lantern"/></svg></div>
+      <div class="lantern-wrap g g8"><svg class="lantern"><use href="#lantern"/></svg></div>
+      <div class="lantern-wrap g g9"><svg class="lantern"><use href="#lantern"/></svg></div>
+    </div>
+    <div class="far-lanterns" aria-hidden="true">
+      <div class="lantern-wrap fl fl1"><svg class="lantern"><use href="#lantern"/></svg></div>
+      <div class="lantern-wrap fl fl2"><svg class="lantern"><use href="#lantern"/></svg></div>
+      <div class="lantern-wrap fl fl3"><svg class="lantern"><use href="#lantern"/></svg></div>
+      <div class="lantern-wrap fl fl4"><svg class="lantern"><use href="#lantern"/></svg></div>
+      <div class="lantern-wrap fl fl5"><svg class="lantern"><use href="#lantern"/></svg></div>
+    </div>
+    <p class="s5-vertical" lang="ja" aria-hidden="true">お待ちしております</p>
+
+    <div class="panel">
+      <div class="panel-head">
+        <p class="eyebrow reveal" data-i18n="s5.eyebrow">Ждём вас</p>
+        <h2 class="h-mid reveal" id="s5-title"><span data-i18n="s5.title">Забронируйте</span> <em class="script script--inline" data-i18n="s5.script">столик</em></h2>
+        <p class="find reveal" data-i18n="s5.find">Ищите нас по самураю в красных доспехах у входа.</p>
+      </div>
+      <div class="info">
+        <div class="info-col reveal">
+          <h3 data-i18n="s5.hoursL">Часы работы</h3>
+          <p class="big" data-i18n="s5.hours">Ежедневно</p>
+          <p class="big big--num">11:00 — 23:00</p>
+        </div>
+        <div class="info-col reveal">
+          <h3 data-i18n="s5.addrL">Адрес</h3>
+          <p data-i18n="s5.addr">Самарканд, ул. Абу Райхон Беруни, 71</p>
+          <a class="link" data-link="map" href="#" target="_blank" rel="noopener" data-i18n="s5.map">Открыть на карте</a>
+        </div>
+        <div class="info-col reveal">
+          <h3 data-i18n="s5.bookL">Бронь по телефону</h3>
+          <a class="phone" href="tel:+998937223344">+998 93 722 33 44</a>
+          <a class="phone" href="tel:+998906033344">+998 90 603 33 44</a>
+        </div>
+        <div class="info-col reveal">
+          <h3 data-i18n="s5.socialL">Мы на связи</h3>
+          <a class="link" data-link="instagram" href="#" target="_blank" rel="noopener">Instagram · @katana_samarkand</a>
+          <a class="link" data-link="eda" href="#" target="_blank" rel="noopener" data-i18n="s5.eda">Доставка · Яндекс Еда</a>
+        </div>
+      </div>
+      <p class="foot reveal"><span>© 2026 Katana</span><span data-i18n="s5.foot">Суши-бар в Самарканде</span></p>
+    </div>
+  </section>
+
+  <!-- foreground: blade cuts, petals & the one that passes the camera -->
+  <div class="slash slash--1" aria-hidden="true"></div>
+  <div class="slash slash--2" aria-hidden="true"></div>
+  <canvas class="petals" id="petals" aria-hidden="true"></canvas>
+  <div class="bigpetal-wrap" aria-hidden="true">
+    <svg class="bigpetal"><use href="#petal"/></svg>
+    <svg class="bigpetal bigpetal--2"><use href="#petal"/></svg>
+  </div>
+
+  <div class="frame" aria-hidden="true">
+    <svg class="corner c-tl"><use href="#corner"/></svg>
+    <svg class="corner c-tr"><use href="#corner"/></svg>
+    <svg class="corner c-bl"><use href="#corner"/></svg>
+    <svg class="corner c-br"><use href="#corner"/></svg>
+  </div>
+  <div class="grain" aria-hidden="true"></div>
+</main>
+
+<div class="progress" aria-hidden="true">
+  <span class="progress-num">一</span>
+  <span class="progress-bar"><span class="progress-fill"></span></span>
+  <span class="progress-num progress-num--end">五</span>
+</div>
+
+<!-- scroll driver: its height is the length of the "shot" -->
+<div class="scroll-track" id="track" aria-hidden="true"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

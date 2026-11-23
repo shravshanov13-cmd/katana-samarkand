@@ -2,3 +2,24 @@
 *-raw.png
 Thumbs.db
 .DS_Store
+materials/
+*.zip
+
+# not part of the site
+gsap-skills/
+/03652d57a80b38b98c31795a8e6eaf8a.jpg
+node_modules/
+/16482514346777.webp
+/e7cb41dcbd7922ce8f0193878bb31650.jpg
+/Без названия.png
+/702147c51425d0d4da5fa13bc4747bca.jpg
+/8f842bcfc7900bd153c10834747f74b9.jpg
+/katana-black-src.webp
+/Без названия.htm
+
+# source photos dropped into the root
+/*.jpg
+/*.jpeg
+/*.png
+/*.webp
+/*.htm
